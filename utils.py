@@ -49,9 +49,9 @@ def get_prox_scores(raw_scores, max_score, limit):
 
 
 
-def get_multiselect_answers(multiselect_list, full_list, skip=True):
-    if skip == True:
-        return [np.nan]*len(full_list)
+def get_multiselect_answers(multiselect_list, full_list): #, skip=True):
+    #if skip == True:
+    #    return [np.nan]*len(full_list)
     answers = np.array([option in multiselect_list for option in full_list], dtype=int)
     return list(answers)
 

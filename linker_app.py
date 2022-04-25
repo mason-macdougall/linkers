@@ -73,16 +73,16 @@ with form:
     music = cols4[0].multiselect(
          'What music genres are you into (if any)?',
          genres_list)
-    skips.append(cols4[1].checkbox("Skip music?", value=True))
+    skips += [cols4[1].checkbox("Skip music?", value=True)]*len(genres_list)
 
     cols5 = st.columns(2)
     sports = cols5[0].multiselect(
          'What sports or exercise are you into (if any)?',
          sports_list)
-    skips.append(cols5[1].checkbox("Skip sports?", value=True))
+    skips += [cols5[1].checkbox("Skip sports?", value=True)]*len(sports_list)
 
-    answers += get_multiselect_answers(music, genres_list, skip=skips[0])
-    answers += get_multiselect_answers(sports, sports_list, skip=skips[1])
+    answers += get_multiselect_answers(music, genres_list)
+    answers += get_multiselect_answers(sports, sports_list)
 
     for i, q in enumerate(questions):
         cols = st.columns(2)

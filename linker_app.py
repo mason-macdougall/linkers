@@ -35,7 +35,7 @@ genres_list = ['k-pop', 'pop', 'rock', 'alt', 'rap', 'hip hop', 'indie',
                'country', 'r&b', 'latin', 'house', 'edm', 'punk', 'instrumental', 'other']
 sports_list = ['running', 'hiking', 'lifting', 'swimming', 'soccer', 'basketball', 'baseball',
                'softball', 'football', 'tennis', 'cricket', 'badminton', 'climbing', 'kayaking', 
-               'walking', 'martial arts', 'golf', 'hockey', 'gymnastics', 'gym', 'volleyball']
+               'walking', 'martial arts', 'golf', 'hockey', 'gymnastics', 'gym', 'volleyball', 'other']
 
 with form:
     cols1 = st.columns((1, 1))
@@ -80,6 +80,9 @@ with form:
          'What sports or exercise are you into (if any)?',
          sports_list)
     skips.append(cols5[1].checkbox("Skip sports?", value=True))
+
+    answers += get_multiselect_answers(music, genres_list, skip=skips[0])
+    answers += get_multiselect_answers(sports, sports_list, skip=skips[1])
 
     for i, q in enumerate(questions):
         cols = st.columns(2)

@@ -99,7 +99,7 @@ if submitted:
                   'public': True,
                   'bio': bio,
                   'answers': np.array(answers_final),
-                  'music': music
+                  'music': music,
                   'sports': sports}}
 
     if gender == 'male' and preference == 'female':

@@ -16,9 +16,9 @@ pronouns_list = ["", "she/her", "he/him", "they/them", "he/they", "she/they", "x
 bio_default = "Let\'s link!"
 
 genres_list = ['k-pop', 'pop', 'rock', 'alt', 'rap', 'hip hop', 'indie', 
-               'country', 'r&b', 'latin', 'house', 'edm', 'punk', 'instrumental', 'other']
+               'country', 'r&b', 'latin', 'house', 'edm', 'punk', 'instrumental', 'other', "none"]
 
 sports_list = ['running', 'hiking', 'lifting', 'swimming', 'soccer', 'basketball', 'baseball',
                'softball', 'football', 'tennis', 'cricket', 'badminton', 'climbing', 'kayaking', 
-               'walking', 'martial arts', 'golf', 'hockey', 'gymnastics', 'gym', 'volleyball', 'other']
+               'walking', 'martial arts', 'golf', 'hockey', 'gymnastics', 'gym', 'volleyball', 'other', "none"]
 

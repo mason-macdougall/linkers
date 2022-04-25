@@ -7,6 +7,7 @@ import pandas as pd
 import json
 from scipy import stats
 from utils import *
+from all_options import *
 
 limit = 20
 
@@ -17,25 +18,12 @@ st.write(
     "Matching people based on personality!"
 )
 
-options = ["strongly disagree", "somewhat disagree", "neutral", "somewhat agree", "strongly agree"]
-
 N_options = len(options)
 options_dict = {}
 for i, opt in enumerate(options):
     options_dict[opt] = i+1
 
 form = st.form(key="annotation")
-
-genders_list = ["", "female", "male", "non-binary", "gender-fluid", "transgender", "other"]
-preference_list = ["anyone", "female", "male", "non-binary", "other"]
-pronouns_list = ["", "she/her", "he/him", "they/them", "he/they", "she/they", "xie/xir", "ze/zir", "other"]
-bio_default = "Let\'s link!"
-
-genres_list = ['k-pop', 'pop', 'rock', 'alt', 'rap', 'hip hop', 'indie', 
-               'country', 'r&b', 'latin', 'house', 'edm', 'punk', 'instrumental', 'other']
-sports_list = ['running', 'hiking', 'lifting', 'swimming', 'soccer', 'basketball', 'baseball',
-               'softball', 'football', 'tennis', 'cricket', 'badminton', 'climbing', 'kayaking', 
-               'walking', 'martial arts', 'golf', 'hockey', 'gymnastics', 'gym', 'volleyball', 'other']
 
 with form:
     cols1 = st.columns((1, 1))
@@ -66,24 +54,23 @@ with form:
     questions_df = pd.read_csv('questions.csv', delimiter='%')
     questions = questions_df.Questions.values
 
-    answers = []
-    skips = []
 
     cols4 = st.columns(2)
+
+    #### Music
     music = cols4[0].multiselect(
          'What music genres are you into (if any)?',
          genres_list)
-    skips += [cols4[1].checkbox("Skip music?", value=True)]*len(genres_list)
 
-    cols5 = st.columns(2)
-    sports = cols5[0].multiselect(
+    #### Sports
+    sports = cols4[1].multiselect(
          'What sports or exercise are you into (if any)?',
          sports_list)
-    skips += [cols5[1].checkbox("Skip sports?", value=True)]*len(sports_list)
 
-    answers += get_multiselect_answers(music, genres_list)
-    answers += get_multiselect_answers(sports, sports_list)
+    answers = []
+    skips = []
 
+    ### Personality Quiz
     for i, q in enumerate(questions):
         cols = st.columns(2)
         answers.append(cols[0].select_slider("Q"+str(i+1)+".  "+q, options=options, value="neutral"))
@@ -111,7 +98,9 @@ if submitted:
                   'preference': preference,
                   'public': True,
                   'bio': bio,
-                  'answers': np.array(answers_final)}}
+                  'answers': np.array(answers_final),
+                  'music': music
+                  'sports': sports}}
 
     if gender == 'male' and preference == 'female':
         preference = 'anyone'

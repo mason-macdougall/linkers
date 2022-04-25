@@ -10,8 +10,8 @@ from utils import *
 
 limit = 20
 
-st.set_page_config(layout="centered", page_icon="🔗", page_title="Linkers UCLA")
-st.title("Linkers UCLA")
+st.set_page_config(layout="centered", page_icon="🔗", page_title="Linker UCLA")
+st.title("Linker UCLA")
 
 st.write(
     "Matching people based on personality!"
@@ -30,6 +30,12 @@ genders_list = ["", "female", "male", "non-binary", "gender-fluid", "transgender
 preference_list = ["anyone", "female", "male", "non-binary", "other"]
 pronouns_list = ["", "she/her", "he/him", "they/them", "he/they", "she/they", "xie/xir", "ze/zir", "other"]
 bio_default = "Let\'s link!"
+
+genres_list = ['k-pop', 'pop', 'rock', 'alt', 'rap', 'hip hop', 'indie', 
+               'country', 'r&b', 'latin', 'house', 'edm', 'punk', 'instrumental', 'other']
+sports_list = ['running', 'hiking', 'lifting', 'swimming', 'soccer', 'basketball', 'baseball',
+               'softball', 'football', 'tennis', 'cricket', 'badminton', 'climbing', 'kayaking', 
+               'walking', 'martial arts', 'golf', 'hockey', 'gymnastics', 'gym', 'volleyball']
 
 with form:
     cols1 = st.columns((1, 1))
@@ -62,6 +68,19 @@ with form:
 
     answers = []
     skips = []
+
+    cols4 = st.columns(2)
+    music = cols4[0].multiselect(
+         'What music genres are you into (if any)?',
+         genres_list)
+    skips.append(cols4[1].checkbox("Skip music?", value=True))
+
+    cols5 = st.columns(2)
+    sports = cols5[0].multiselect(
+         'What sports or exercise are you into (if any)?',
+         sports_list)
+    skips.append(cols5[1].checkbox("Skip sports?", value=True))
+
     for i, q in enumerate(questions):
         cols = st.columns(2)
         answers.append(cols[0].select_slider("Q"+str(i+1)+".  "+q, options=options, value="neutral"))

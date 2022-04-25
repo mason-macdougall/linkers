@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run linker_app.py
+web: sh setup.sh && streamlit run linkers_app.py

@@ -10,8 +10,8 @@ from utils import *
 
 limit = 20
 
-st.set_page_config(layout="centered", page_icon="🔗", page_title="Linker UCLA")
-st.title("Linker UCLA")
+st.set_page_config(layout="centered", page_icon="🔗", page_title="Linkers UCLA")
+st.title("Linkers UCLA")
 
 st.write(
     "Matching people based on personality!"
